@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 900px;
+    }
+
+    .card-deck {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      width: 45%;
+    }
+
+    .card-header {
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 24px;
+    }
+
+    .btn {
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-outline-primary {
+      background-color: transparent;
+      border: 2px solid #007bff;
+      color: #007bff;
+      transition: 0.3s;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    .radio-group {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .radio-group label {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h4>Pro Subscription Plan</h4>
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="payment-type" value="monthly" checked> Monthly
+      </label>
+      <label>
+        <input type="radio" name="payment-type" value="annual"> Annual (2 months free)
+      </label>
+    </div>
+    <div class="card-deck text-center">
+      <div id="basic-plan" class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h3 class="my-0 font-weight-normal">Basic</h3>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title pricing-card-title">$<span class="pricing">10</span> / month</h4>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>10 users included</li>
+            <li><span class="storage-amount">2</span> GB of storage</li>
+            <li>Email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button>
+        </div>
+      </div>
+      
+      <div id="pro-plan" class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h3 class="my-0 font-weight-normal">Pro</h3>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title pricing-card-title">$<span class="pricing">30</span> / month</h4>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>100 users included</li>
+            <li><span class="storage-amount">20</span> GB of storage</li>
+            <li>Priority email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Get Started</button>
+        </div>
+      </div> 
+    </div>
+  </div>
+
+  <script>
+    // Exercise 01: Add 24/7 phone support to the Pro plan
+    
+    const proPlanFeatures = document.querySelector('#pro-plan ul');
+    const phoneSupport = document.createElement('li');
+    phoneSupport.textContent = '24/7 Phone support';
+    proPlanFeatures.appendChild(phoneSupport);
+
+    // Exercise 02: Move Basic plan before Pro plan
+    const cardDeck = document.querySelector('.card-deck');
+    const basicPlan = document.getElementById('basic-plan');
+    const proPlan = document.getElementById('pro-plan');
+    cardDeck.insertBefore(basicPlan, proPlan);
+
+    // Exercise 03: Update Pro 'Get Started' button to 'Buy Now' and make it blue with white text
+    const proPlanButton = document.querySelector('#pro-plan button');
+    proPlanButton.textContent = 'Buy Now';
+    proPlanButton.classList.remove('btn-outline-primary');
+    proPlanButton.style.backgroundColor = '#007bff';
+    proPlanButton.style.color = 'white';
+
+    // Exercise 04: Update storage amounts (Basic 50% more, Pro 25% more)
+    const basicStorage = document.querySelector('#basic-plan .storage-amount');
+    const proStorage = document.querySelector('#pro-plan .storage-amount');
+    basicStorage.textContent = 2 * 1.5; // 50% more
+    proStorage.textContent = 20 * 1.25; // 25% more
+
+    // Exercise 05: Toggle between monthly and annual payments
+    const pricingCards = document.querySelectorAll('.pricing-card-title .pricing');
+    const paymentOptions = document.querySelectorAll('input[name="payment-type"]');
+
+    paymentOptions.forEach(option => {
+      option.addEventListener('change', function () {
+        if (this.value === 'annual') {
+          // Annual prices (2 months free)
+          pricingCards[0].textContent = (10 * 12 * 0.8333).toFixed(2); // Basic Plan: $100 / year
+          pricingCards[1].textContent = (30 * 12 * 0.8333).toFixed(2); // Pro Plan: $300 / year
+        } else {
+          // Monthly prices
+          pricingCards[0].textContent = '10'; // Basic Plan: $10 / month
+          pricingCards[1].textContent = '30'; // Pro Plan: $30 / month
+        }
+      });
+    });
+  </script>
+</body>
+</html>

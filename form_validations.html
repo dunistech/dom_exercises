@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+}
+
+button:disabled {
+    background-color: #cccccc;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.85rem;
+    display: none;
+}
+
+.success-message {
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: green;
+    display: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form id="registrationForm">
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                <small class="error-message" id="usernameError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <small class="error-message" id="passwordError"></small>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword">
+                <small class="error-message" id="confirmPasswordError"></small>
+            </div>
+
+            <button type="submit" id="registerBtn" disabled>Register</button>
+            <div id="successMessage" class="success-message"></div>
+
+        </form>
+    </div>
+    <script src="script.js"></script>
+
+    <script>
+    
+    document.getElementById('registrationForm').addEventListener('input', function () {
+    
+    // Getting form values
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    // Getting error elements used to display error message per input field
+    const usernameError = document.getElementById('usernameError');
+    const passwordError = document.getElementById('passwordError');
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+    const registerBtn = document.getElementById('registerBtn');
+
+    // Clear previous error messages
+    usernameError.style.display = 'none';
+    passwordError.style.display = 'none';
+    confirmPasswordError.style.display = 'none';
+
+    // Validate username
+    if (username === '') {
+        usernameError.textContent = 'Username is required.';
+        usernameError.style.display = 'block';
+    }
+
+    // Validate password
+    if (password === '') {
+        passwordError.textContent = 'Password is required.';
+        passwordError.style.display = 'block';
+    }
+
+    // Validate confirm password
+    if (confirmPassword === '') {
+        confirmPasswordError.textContent = 'Please confirm your password.';
+        confirmPasswordError.style.display = 'block';
+    } else if (password !== confirmPassword) { 
+        confirmPasswordError.textContent = 'Passwords do not match.';
+        confirmPasswordError.style.display = 'block';
+    }
+
+    // Enable or disable the register button
+    if (username !== '' && password !== '' && confirmPassword !== '' && password === confirmPassword) {
+        registerBtn.disabled = false;
+    } else {
+        registerBtn.disabled = true;
+    }
+    
+});
+
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const successMessage = document.getElementById('successMessage');
+        successMessage.textContent = 'User registered successfully!';
+        successMessage.style.display = 'block';
+    });
+
+    </script>
+</body>
+</html>

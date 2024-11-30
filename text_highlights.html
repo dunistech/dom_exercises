@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript DOM Exercises</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+    p {
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dunistech Academy DOM Class (JS)</h1>
+  <p id="text-paragraph">
+    Hey, you're not permitted in there. It's restricted. You'll be deactivated for sure.. Don't call me a mindless philosopher, you overweight glob of grease! Now come out before somebodyboo sees you. Secret mission? What plans? What are you talking about? I'm not getting in there! I'm going to regret this. There goes another one. Hold your fire. There are no life forms. It must have been short-circuited. That's funny, the damage doesn't look as bad from out here. Are you sure this things safe?
+
+    Close up formation. You'd better let her loose. Almost there! I can't hold them! It's away! It's a hit! Negative. Negative! It didn't go in. It just impacted on the surface. Red Leader, we're right above you. Turn to point... oh-five, we'll cover for you. Stay there... I just lost my starboard engine. Get set to make your attack run.
+
+    The Death Star plans are not in the main computer. Where are those transmissions you intercepted? What have you done with those plans? We intercepted no transmissions. Aaah....This is a consular ship. Were on a diplomatic mission. If this is a consular ship...were is the Ambassador? Commander, tear this ship apart until you've found those plans and bring me the Ambassador. I want her alive! There she is! Set for stun! She'll be all right. Inform Lord Vader we have a prisoner.
+
+    What a piece of junk. She'll make point five beyond the speed of light. She may not look like much, but she's got it where it counts, kid. I've added some special modifications myself. We're a little rushed, so if you'll hurry aboard we'll get out of here. Hello, sir. Which way? All right, men. Load your weapons! Stop that ship! Blast 'em! Chewie, get us out of here! Oh, my. I'd forgotten how much I hate space travel.
+
+    Run, Luke! Run!
+  </p>
+
+  <script>
+
+    // Highlight words over 8 characters
+    // const paragraph = document.getElementById("text-paragraph");
+    // const paragraph = document.getElementById("p");
+    // const text = paragraph.innerText;
+    // const highlightedText = text.split(" ").map(word => {
+    //   return word.length > 8 ? `<span class="highlight">${word}</span>` : word;
+    // }).join(" ");
+    // paragraph.innerHTML = highlightedText;
+
+    const p_tag = document.querySelector('p');
+    p_tag.innerHTML = p_tag.innerText.split(' ').map(word => word.length > 8 ? `<span style='background-color:yellow'>${word}</span>`: word).join(' ');
+
+    /*
+    This line of JavaScript code is manipulating the text inside the first `<p>` (paragraph) element on a webpage. 
+      Here's a step-by-step breakdown of what it does:
+
+1. Select the first `<p>` element:  
+
+   const p_tag = document.querySelector('p');
+   
+   - `document.querySelector('p')`: This method finds the first `<p>` (paragraph) element in the HTML document.
+   - The result is stored in the `p_tag` variable, so we can later work with this specific paragraph.
+
+2. Get the text inside the `<p>` tag:  
+
+   p_tag.innerText
+   
+   - `p_tag.innerText`: This gets the plain text content of the paragraph. It ignores any HTML tags inside the paragraph and just extracts the visible text.
+
+3. Split the text into words:  
+
+   p_tag.innerText.split(' ')
+   
+   - `.split(' ')`: This splits the text into an array of words. The text is divided wherever there is a space `' '`. So, for example, the sentence "Hello world" would become `["Hello", "world"]`.
+
+4. Modify long words:  
+
+   .map(word => word.length > 8 ? `<span style='background-color:yellow'>${word}</span>` : word)
+   
+   - `.map()`: This goes through each word in the array and checks if its length (number of characters) is greater than 8.
+   - If a word has more than 8 characters, it wraps the word in a `<span>` tag with a yellow background color. This makes it highlighted.
+   - If the word has 8 characters or fewer, it leaves it as is.
+
+   Example: If the word "extraordinary" (which is more than 8 characters) is found, it will be transformed to `<span style='background-color:yellow'>extraordinary</span>`.
+
+5. Rejoin the words back into a string:  
+
+   .join(' ')
+   
+   - `.join(' ')`: After modifying the words, this combines the words back into a single string, with spaces between them.
+
+6. Update the HTML content:  
+
+   p_tag.innerHTML = ...
+   
+   - `p_tag.innerHTML`: This updates the HTML content inside the `<p>` tag.
+   - It replaces the original text with the new text, where any long words (longer than 8 characters) are now highlighted with a yellow background.
+
+ Putting it all together:
+The code selects the first paragraph on the page, looks at each word in the paragraph, and if a word has more than 8 characters, it highlights it with a yellow background. Finally, it updates the paragraph to show the new text with the highlighted words.
+
+ Example:
+If the original paragraph text is:
+
+This is an extraordinarily long word and a short one.
+After running the code, it would become:
+
+This is an <span style='background-color:yellow'>extraordinarily</span> long word and a short one.
+    */
+
+  </script>
+</body>
+</html>
